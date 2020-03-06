@@ -23,16 +23,16 @@ fn main() {
 //     let _10: u32;
 //     let mut _11: u32;
 //     scope 1 {
-//         debug y => _10;
+//         debug y => _2;
 //     }
 //     scope 2 {
 //         debug err => _6;
 //         scope 3 {
 //             scope 7 {
-//                 debug t => _6;
+//                 debug t => _9;
 //             }
 //             scope 8 {
-//                 debug v => _6;
+//                 debug v => _8;
 //                 let mut _12: i32;
 //             }
 //         }
@@ -43,22 +43,49 @@ fn main() {
 //         }
 //     }
 //     scope 6 {
-//         debug self => _1;
+//         debug self => _4;
 //     }
 //     bb0: {
-//         _5 = discriminant(_1);
+//         StorageLive(_2);
+//         StorageLive(_3);
+//         StorageLive(_4);
+//         _4 = _1;
+//         _3 = move _4;
+//         StorageDead(_4);
+//         _5 = discriminant(_3);
 //         switchInt(move _5) -> [0isize: bb1, otherwise: bb2];
 //     }
 //     bb1: {
-//         _10 = ((_1 as Ok).0: u32);
-//         ((_0 as Ok).0: u32) = move _10;
+//         StorageLive(_10);
+//         _10 = ((_3 as Ok).0: u32);
+//         _2 = _10;
+//         StorageDead(_10);
+//         StorageDead(_3);
+//         StorageLive(_11);
+//         _11 = _2;
+//         ((_0 as Ok).0: u32) = move _11;
 //         discriminant(_0) = 0;
+//         StorageDead(_11);
+//         StorageDead(_2);
 //         goto -> bb3;
 //     }
 //     bb2: {
-//         _6 = ((_1 as Err).0: i32);
-//         ((_0 as Err).0: i32) = move _6;
+//         StorageLive(_6);
+//         _6 = ((_3 as Err).0: i32);
+//         StorageLive(_8);
+//         StorageLive(_9);
+//         _9 = _6;
+//         _8 = move _9;
+//         StorageDead(_9);
+//         StorageLive(_12);
+//         _12 = move _8;
+//         ((_0 as Err).0: i32) = move _12;
 //         discriminant(_0) = 1;
+//         StorageDead(_12);
+//         StorageDead(_8);
+//         StorageDead(_6);
+//         StorageDead(_3);
+//         StorageDead(_2);
 //         goto -> bb3;
 //     }
 //     bb3: {
@@ -82,16 +109,16 @@ fn main() {
 //     let _10: u32;
 //     let mut _11: u32;
 //     scope 1 {
-//         debug y => _10;
+//         debug y => _2;
 //     }
 //     scope 2 {
 //         debug err => _6;
 //         scope 3 {
 //             scope 7 {
-//                 debug t => _6;
+//                 debug t => _9;
 //             }
 //             scope 8 {
-//                 debug v => _6;
+//                 debug v => _8;
 //                 let mut _12: i32;
 //             }
 //         }
@@ -102,22 +129,28 @@ fn main() {
 //         }
 //     }
 //     scope 6 {
-//         debug self => _1;
+//         debug self => _4;
 //     }
 //     bb0: {
-//         _5 = discriminant(_1);
+//         StorageLive(_2);
+//         StorageLive(_3);
+//         StorageLive(_4);
+//         _4 = _1;
+//         _3 = move _4;
+//         StorageDead(_4);
+//         _5 = discriminant(_3);
 //         switchInt(move _5) -> [0isize: bb1, otherwise: bb2];
 //     }
 //     bb1: {
-//         _0 = move _1;
-//         nop;
-//         nop;
+//         _0 = move _3;
+//         StorageDead(_3);
+//         StorageDead(_2);
 //         goto -> bb3;
 //     }
 //     bb2: {
-//         _0 = move _1;
-//         nop;
-//         nop;
+//         _0 = move _3;
+//         StorageDead(_3);
+//         StorageDead(_2);
 //         goto -> bb3;
 //     }
 //     bb3: {
@@ -141,16 +174,16 @@ fn main() {
 //     let _10: u32;
 //     let mut _11: u32;
 //     scope 1 {
-//         debug y => _10;
+//         debug y => _2;
 //     }
 //     scope 2 {
 //         debug err => _6;
 //         scope 3 {
 //             scope 7 {
-//                 debug t => _6;
+//                 debug t => _9;
 //             }
 //             scope 8 {
-//                 debug v => _6;
+//                 debug v => _8;
 //                 let mut _12: i32;
 //             }
 //         }
@@ -161,16 +194,22 @@ fn main() {
 //         }
 //     }
 //     scope 6 {
-//         debug self => _1;
+//         debug self => _4;
 //     }
 //     bb0: {
-//         _5 = discriminant(_1);
+//         StorageLive(_2);
+//         StorageLive(_3);
+//         StorageLive(_4);
+//         _4 = _1;
+//         _3 = move _4;
+//         StorageDead(_4);
+//         _5 = discriminant(_3);
 //         goto -> bb1;
 //     }
 //     bb1: {
-//         _0 = move _1;
-//         nop;
-//         nop;
+//         _0 = move _3;
+//         StorageDead(_3);
+//         StorageDead(_2);
 //         goto -> bb2;
 //     }
 //     bb2: {
@@ -183,25 +222,28 @@ fn main() {
 // fn try_identity(_1: std::result::Result<u32, i32>) -> std::result::Result<u32, i32> {
 //     debug x => _1;
 //     let mut _0: std::result::Result<u32, i32>;
-//     let mut _2: isize;
-//     let _3: i32;
-//     let _4: u32;
+//     let _2: u32;
+//     let mut _3: isize;
+//     let _4: i32;
+//     let mut _5: i32;
+//     let mut _6: i32;
+//     let _7: u32;
 //     scope 1 {
-//         debug y => _4;
+//         debug y => _2;
 //     }
 //     scope 2 {
-//         debug err => _3;
+//         debug err => _4;
 //         scope 3 {
 //             scope 7 {
-//                 debug t => _3;
+//                 debug t => _6;
 //             }
 //             scope 8 {
-//                 debug v => _3;
+//                 debug v => _5;
 //             }
 //         }
 //     }
 //     scope 4 {
-//         debug val => _4;
+//         debug val => _7;
 //         scope 5 {
 //         }
 //     }
@@ -209,8 +251,10 @@ fn main() {
 //         debug self => _1;
 //     }
 //     bb0: {
-//         _2 = discriminant(_1);
+//         StorageLive(_2);
+//         _3 = discriminant(_1);
 //         _0 = move _1;
+//         StorageDead(_2);
 //         return;
 //     }
 // }
