@@ -39,9 +39,14 @@ fn main() {
 //     }
 //     ...
 //     bb3: {
+//         StorageLive(_4);
 //         _4 = ((_1 as Foo).0: u8);
-//         ((_2 as Foo).0: u8) = move _4;
+//         StorageLive(_5);
+//         _5 = _4;
+//         ((_2 as Foo).0: u8) = move _5;
 //         discriminant(_2) = 0;
+//         StorageDead(_5);
+//         StorageDead(_4);
 //         goto -> bb4;
 //     }
 //     ...
@@ -65,9 +70,14 @@ fn main() {
 //     }
 //     ...
 //     bb3: {
+//         StorageLive(_4);
 //         _4 = ((_1 as Foo).0: u8);
-//         ((_2 as Foo).0: u8) = move _4;
+//         StorageLive(_5);
+//         _5 = _4;
+//         ((_2 as Foo).0: u8) = move _5;
 //         discriminant(_2) = 0;
+//         StorageDead(_5);
+//         StorageDead(_4);
 //         goto -> bb4;
 //     }
 //     ...
